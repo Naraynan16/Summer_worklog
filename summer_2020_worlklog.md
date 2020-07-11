@@ -13,3 +13,9 @@ output: html_document
  date :30/06/2020 -
  learnt how to insert a image in rmd file.
  also solved the yaml header problem in the previous files.
+
+ date: 01/07/2020 
+ learnt the refgene data and viewed them in the ucsc genome browser
+ 
+ date:05/07/2020
+ extracted the ref coding transcripts from the 
