@@ -96,6 +96,6 @@ for (i in 1:dim(codingTx)[1])
 colnames(utr1) <- c("type","start","end","chrom","strand","geneName","transcript_id")
 colnames(utr2) <- c("type","start","end","chrom","strand","geneName","transcript_id")
 
-all_utr <- merge(x = utr1,y = utr2)
-colnames(all_utr) <- c("chrom","strand","geneName","transcriptId","type1","3'start","3'end","type2","5'start","5'end")
+all_utr <- merge(x = utr1,y = utr2,by = "chrom")
+colnames(all_utr) <- c("chrom","strand","geneName","transcript_id","type1","3'start","3'end","type2","5'start","5'end")
 write.csv(x = all_utr, file = "all_utr.csv", row.names = F)
