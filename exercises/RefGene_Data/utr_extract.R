@@ -92,3 +92,9 @@ for (i in 1:dim(codingTx)[1])
     }
   }
 }
+
+colnames(utr1) <- c("type","start","end","chrom","strand","geneName","transcript_id")
+colnames(utr2) <- c("type","start","end","chrom","strand","geneName","transcript_id")
+
+write.csv(x = utr1, file = "utr_1.csv", row.names = F)
+write.csv(x = utr2, file = "utr_2.csv", row.names = F)
