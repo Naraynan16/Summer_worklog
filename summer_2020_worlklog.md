@@ -22,8 +22,11 @@ date :26/06/2020 -
  extracted the coding transcripts from the refgene
  uploaded it into the git. 
 
-date:06/07/2020
+date:10/07/2020
 wrote a code to extract the utr from the coding transcripts 
 and resolved the git issue. reuploaded the summer worklog repo
+
+date:11/07/2020
+wrote code to extract the introns fromm the refgene
 
 
