@@ -12,6 +12,7 @@ allExons<- data.frame()
 
 library(dplyr)
 library(tidyr)
-allExons <- codingTx %>% separate_rows(exStarts,exEnds,convert = T)
-allExons <- na.omit(allExons)
+set1  <- codingTx[,c(2:4,10,11,13)]
+allExons <- set1 %>% separate_rows(exStarts,exEnds,convert = T)
+allExons <-  na.omit(allExons)
 write.csv(x = allExons,file = "individual_transcripts.csv",row.names = F)
