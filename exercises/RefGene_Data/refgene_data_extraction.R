@@ -1,5 +1,5 @@
 library(data.table)
-refgene <- fread("C:/Users/Narayanan/Downloads/refgene.txt.gz")
+refgene <- as.data.frame(fread("C:/Users/Narayanan/Downloads/refgene.txt.gz"))
 colnames(refgene) <- c("id", "transcript_id", "chrom", "txstrand", "txStart", "txEnd", "cdsStart",
                       "cdsEnd", "exonCount", "exStarts", "exEnds", "uid", "geneName", "cdsStartStat",
                       "cdsEndStat","exonFrames")
