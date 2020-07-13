@@ -23,4 +23,5 @@ for (i in 1:dim(codingTx)[1]){
 }
 }
 }
+colnames(refgene_introns) <- c("transcript_id","chrom","strand","intron_no","start","end","geneName")
 write.csv(x = refgene_introns,file = "refgene_introns.csv",row.names = F)

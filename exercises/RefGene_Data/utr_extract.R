@@ -1,4 +1,5 @@
-codingTx<-read.csv(file ="C:/Users/Narayanan/Desktop/summer_worklog/coding_transcripts.csv",header = T)
+library(data.table)
+codingTx <-fread(file ="C:/Users/Narayanan/Desktop/summer_worklog/coding_transcripts.csv",header = T,sep = ",")
 utr1 <- data.frame()
 utr2 <- data.frame()
 for (i in 1:dim(codingTx)[1])

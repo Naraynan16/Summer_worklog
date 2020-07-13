@@ -1,7 +1,8 @@
-refgene <- read.table("C:/Users/Narayanan/Downloads/refGene.txt")
-header <- c("id", "transcript_id", "chrom", "txstrand", "txStart", "txEnd", "cdsStart",
-            "cdsEnd", "exonCount", "exStarts", "exEnds", "uid", "geneName", "cdsStartStat","cdsEndStat","exonFrames")
-colnames(refgene) <- header
+library(data.table)
+refgene <- fread("C:/Users/Narayanan/Downloads/refgene.txt.gz")
+colnames(refgene) <- c("id", "transcript_id", "chrom", "txstrand", "txStart", "txEnd", "cdsStart",
+                      "cdsEnd", "exonCount", "exStarts", "exEnds", "uid", "geneName", "cdsStartStat",
+                      "cdsEndStat","exonFrames")
 
 #extract coding transcripts
 
@@ -14,5 +15,5 @@ library(dplyr)
 library(tidyr)
 set1  <- codingTx[,c(2:4,10,11,13)]
 allExons <- set1 %>% separate_rows(exStarts,exEnds,convert = T)
-allExons <-  na.omit(allExons)
+allExons <-  allExons[complete.cases(allExons$exStarts),]
 write.csv(x = allExons,file = "individual_transcripts.csv",row.names = F)
