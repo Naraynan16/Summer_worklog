@@ -7,29 +7,30 @@ utr1 <- utr1[!utr1$start== "-",]
 utr2 <- as.data.frame(read.csv(file = "utr2.csv",header = T))
 utr2 <- utr2[!utr2$start== "-",]
 
-dat$intervalType <- NA
-for (i in 1:dim(dat)[1]){
-  chr <- dat[i,7]
-  exlist <- exons %>% filter(exons$chrom == chr)
-  exOverlaps <- exlist[between(x = dat[i,5],lower = exlist$exStarts,upper = exlist$exEnds,incbounds = F),c(1,6)]
-  if(dim(exOverlaps)[1]>0){
-    dat$intervalType <- "exonic"
-  }
- inlist <- introns %>% filter(introns$chrom == chr)
- inOverlaps<-inlist[between(x = dat[i,5],lower = inlist$start,upper = inlist$end,incbounds = F),c(1,7)]
- if(dim(inOverlaps)[1]>0){
-   dat$intervalType <- "intronic"
- }                             
-  utlist1 <- utr1 %>% filter(utr1$chrom == chr)
-  utrOverlaps1 <- utlist1[between(x = dat[i,5],lower = utlist1$start,upper = utlist1$start,incbounds = F),c(4,7,1)]
-  if(dim(utrOverlaps1)[1]>0){
-    dat$intervalType <- utrOverlaps1[,3]
-  }                            
-  utlist2 <- utr2 %>% filter(utr2$chrom == chr)
-   utrOverlaps2 <- utlist2[between(x = dat[i,5],lower = utlist2$start,upper = utlist2$start,incbounds = F),c(4,7,1)]
-  if(dim(utrOverlaps2)[1]>0){
-    dat$intervalType <- utrOverlaps2[,4]
-  }                           
-}
+datGr <- GRanges(seqnames = dat$chromosome,
+                 ranges = IRanges(start = dat$start,end = dat$end,type= dat$type))
+
+exonsGr <- GRanges(seqnames = exons$chrom,
+                   ranges = IRanges(start = exons$exStarts,end = exons$exEnds,geneName= exons$geneName)) 
+
+intronGr<- GRanges(seqnames = introns$chrom,
+                   ranges = IRanges(start = introns$start,end = introns$end,geneName=introns$geneName))
+
+utrGr1<- GRanges(seqnames = utr1$chrom,
+                 ranges = IRanges(start = type.convert(utr1$start),
+                                  end = type.convert(utr1$end),
+                                  type = utr1$type))
+utrGr2<- GRanges(seqnames = utr2$chrom,
+                 ranges = IRanges(start = as.numeric(utr2$start),end = as.numeric(utr2$end),
+                                  type = utr2$type))
+
+
+exonicOverlaps <- findOverlaps(datGr,exonsGr)
+intronicOverlaps <- findOverlaps(datGr,intronGr)
+utr1Overlaps <- findOverlaps(datGr,utrGr1)
+utr2Overlaps <- findOverlaps(datGr,utrGr2)
+
+
+
 
 
