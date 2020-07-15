@@ -29,4 +29,14 @@ and resolved the git issue. reuploaded the summer worklog repo
 date:11/07/2020
 wrote code to extract the introns fromm the refgene
 
+date:12/07/2020
+wrote a shiny app to view all the intervals of particular gene
 
+date:13/07/2020
+did some correction in the refgene_transcript_extract.R.
+i.e replace  na.omit() with column specific omition
+read about the data.table package and used fread to read a file
+
+date:14/07/2020
+revised the genomic ranges 
+and started doing exercise 1- annotation of exomdepth data with refgene

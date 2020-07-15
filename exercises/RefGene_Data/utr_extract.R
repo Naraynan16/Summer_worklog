@@ -97,4 +97,7 @@ colnames(utr1) <- c("type","start","end","transcript_id","chrom","strand","geneN
 colnames(utr2) <- c("type","start","end","transcript_id","chrom","strand","geneName")
 all_utr <- merge(x = utr1,y = utr2, by="chrom")
 colnames(all_utr) <- c("chrom","strand","geneName","transcript_id","utr.1","start.1","end.1","utr.2","start.2","end.2")
+write.csv(x=utr1,file = "utr1.csv",row.names = F)
+write.csv(x=utr2,file = "utr2.csv",row.names = F)
 write.csv(x = all_utr, file = "all_utr.csv", row.names = F)
+
