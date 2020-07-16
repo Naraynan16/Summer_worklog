@@ -26,11 +26,11 @@ utrGr2<- GRanges(seqnames = utr2$chrom,
 
 
 exonicOverlaps <- findOverlaps(datGr,exonsGr)
+exSubset <- subsetByOverlaps(exonsGr,datGr)
 intronicOverlaps <- findOverlaps(datGr,intronGr)
 utr1Overlaps <- findOverlaps(datGr,utrGr1)
 utr2Overlaps <- findOverlaps(datGr,utrGr2)
 
-
-
+subsetByOverlaps(exonsGr,datGr)
 
 
