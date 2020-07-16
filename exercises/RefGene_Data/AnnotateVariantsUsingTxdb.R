@@ -10,4 +10,4 @@ library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 
 txdb_hg19 <- TxDb.Hsapiens.UCSC.hg19.knownGene
 allVaraints_txdb <- locateVariants(query = datGr,subject = txdb_hg19,AllVariants())
-                ranges = IRanges(start = dat$start,end = dat$end)
+                
