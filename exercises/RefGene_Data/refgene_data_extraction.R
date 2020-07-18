@@ -13,7 +13,9 @@ allExons<- data.frame()
 
 library(dplyr)
 library(tidyr)
-set1  <- codingTx[,c(2:4,10,11,13)]
+
+set1  <- codingTx[,c(2:4,9,10,11,13)]
 allExons <- set1 %>% separate_rows(exStarts,exEnds,convert = T)
 allExons <-  allExons[complete.cases(allExons$exStarts),]
+allExons <- as.data.frame(allExons %>% group_by(transcript_id) %>% mutate(exonNo = paste0("exon_",row_number())))
 write.csv(x = allExons,file = "individual_transcripts.csv",row.names = F)
