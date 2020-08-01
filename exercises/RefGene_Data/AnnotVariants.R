@@ -14,7 +14,6 @@ datGr$Index <- as.character(seq_len(length(datGr)))
 
 #datas for annotation
 
-introns <- read.csv(file = "refgene_introns.csv",header = T)
 exons <- read.csv(file = "individual_transcripts.csv",header = T)
 fiveutr <- as.data.frame(read.csv(file = "fiveUTR.csv",header = T))
 threeutr <- as.data.frame(read.csv(file = "threeUTR.csv",header = T))
@@ -55,6 +54,9 @@ partialLex <- as.data.frame(exons %>%
                               group_by(transcript_id) %>%
                               filter(row_number() != 1))
 
+
+partial <- as.data.frame(merge(x = partialLex,y = partialFex))
+
 #making GRanges for the genomicRegions
 
 firstExonGR <- GRanges(seqnames = firstExon$chrom,
@@ -85,19 +87,13 @@ fiveutrGR <- GRanges(seqnames = fiveutr$chrom,
                      type = fiveutr$type)
 fiveutrGR$Index <- as.character(seq_len(length(fiveutrGR)))
 
-partialFexGR <- GRanges(seqnames = partialFex$chrom,
-                        ranges = IRanges(start = partialFex$exStarts,
-                                         end = partialFex$exEnds),
-                        geneName = partialFex$geneName,
-                        exonNo = partialFex$exonNo)
-partialFexGR$Index <- as.character(seq_len(length(partialFexGR)))
+partialGR <- GRanges(seqnames = partial$chrom,
+                     ranges = IRanges(start = partial$exStarts,
+                                      end = partial$exEnds),
+                     geneName = partial$geneName,
+                     exonNo = partial$exonNo)
+partialGR$Index <- as.character(seq_len(length(partialGR)))
 
-partialLexGR <- GRanges(seqnames = partialLex$chrom,
-                        ranges = IRanges(start = partialLex$exStarts,
-                                         end = partialLex$exEnds),
-                        geneName = partialLex$geneName,
-                        exonNo = partialLex$exonNo)
-partialLexGR$Index <- as.character(seq_len(length(partialLexGR)))
 
 intragenicGR <- GRanges(seqnames = intragenic$chrom,
                         ranges = IRanges(start = intragenic$exStarts,
@@ -106,65 +102,126 @@ intragenicGR <- GRanges(seqnames = intragenic$chrom,
                         exonNo = intragenic$exonNo)
 intragenicGR$Index <- as.character(seq_len(length(intragenicGR)))
 
-intronsGR <- GRanges(seqnames = introns$chrom,
-                     ranges = IRanges(start = introns$start,
-                                      end = introns$end),
-                     geneName = introns$geneName,
-                     exonNo = introns$intron_no)
-intronGr$Index <- as.character(seq_len(length(intronGr)))
+allRegions <- GRangesList(firstExonGR,
+                          lastExonGR,
+                          partialGR,
+                          intragenicGR,
+                          fiveutrGR,
+                          threeutrGR)
 
+pos <- as.vector(c("firstExon",
+                   "lastExon",
+                   "partial",
+                   "intragenic",
+                   "fiveutr",
+                   "threeutr"))
 #function to findOverlaps and annotate
 
-AnnotVariants <- function(queryGR,RefGR,pos){
+AnnotVariants <- function(queryGR,RefGR){
   
   #check whether the queryGR has index and index it if not indexed.
   if (!"Index" %in% colnames(mcols(queryGR))) {
     queryGR$Index <- as.character(seq_len(length(queryGR)))
   }
-      #findOverlap b/w the query and ref
-  qrOverlaps <- findOverlaps(queryGR,RefGR,ignore.strand = TRUE)
-  
-  #store ref indexes
-  ref_hits_index <- DataFrame(InRegion = RefGR[subjectHits(qrOverlaps)]$Index)
-  
-  #object to write the overlap regions in the query
-  InRegion <- rep(NA, length(queryGR))
-  
-  if (nrow(ref_hits_index) > 0) {
+  for (i in 1:6) {
     
-    #rewrite the InRegion which contain ref indexes to geneName for annotation
-    ref_hits_index$InRegion <- RefGR$geneName[as.integer(ref_hits_index$InRegion)]
+    #findOverlap b/w the query and ref
+    qrOverlaps <- findOverlaps(queryGR,RefGR[[i]],ignore.strand = TRUE)
     
-    #func to collapse genes for a particular hit  
-    clps <- function(x) paste0(x, collapse = "|")
+    #store ref indexes
+    ref_hits_index <- DataFrame(InRegion = RefGR[[i]][subjectHits(qrOverlaps)]$Index)
     
-    #combine hits obtained for each query
+    #object to write the overlap regions in the query
+    InRegion <- rep(NA, length(queryGR))
     
-    ref_hits_index_combined <- aggregate(
-      ref_hits_index,
-      list(Index = as.character(queryGR$Index[queryHits(qrOverlaps)])),
-      FUN =clps)
+    if (nrow(ref_hits_index) > 0) {
+      
+      #rewrite the InRegion which contain ref indexes to geneName for annotation
+      ref_hits_index$InRegion <- RefGR[[i]]$geneName[as.integer(ref_hits_index$InRegion)]
+      
+      #func to collapse genes for a particular hit  
+      clps <- function(x) paste0(x, collapse = "|")
+      
+      #combine hits obtained for each query
+      
+      ref_hits_index_combined <- aggregate(
+        ref_hits_index,
+        list(Index = as.character(queryGR$Index[queryHits(qrOverlaps)])),
+        FUN =clps)
+      
+      #write the obtained annotation to an object to add it to the query
+      InRegion[base::match(ref_hits_index_combined$Index, 
+                           queryGR$Index)] <- ref_hits_index_combined$InRegion
+    }
     
-    #write the obtained annotation to an object to add it to the query
-    InRegion[base::match(ref_hits_index_combined$Index, 
-                         queryGR$Index)] <- ref_hits_index_combined$InRegion
+    #add annotation to query and 
+    oldCols<- colnames(mcols(queryGR))
+    queryGR$newcolumn <- InRegion
+    colnames(mcols(queryGR)) <- c(oldCols,pos[i])
   }
   
-  #add annotation to query and 
-  oldCols<- colnames(mcols(queryGR))
-  queryGR$newcolumn <- InRegion
-  colnames(mcols(queryGR)) <- c(oldCols,pos)
+  #annotate only the type
+  regions <- as.data.frame(mcols(queryGR))
+  type <- as.data.frame(matrix(nrow = length(rownames(regions))))
+  for (i in 1:length(queryGR))
+  { 
+    a <- which(!is.na(regions[i,]))
+    alen <- length(a)
+    if(alen > 0 ){
+      
+      if(alen == 7){
+        type[i,] <- rbind("wholeGene")
+      }
+      else if((!is.na(regions[i,2])) && (is.na(regions[i,c(3:7)]))){
+        type[i,] <- rbind("firstExon")
+      }
+      else if((!is.na(regions[i,3])) && (is.na(regions[i,c(2,4:7)]))){
+        type[i,] <- rbind("lastExon")
+      }
+      else if((!is.na(regions[i,6])) && (is.na(regions[i,c(2:5,7)]))){
+        type[i,] <- rbind("fiveUtr")
+      }
+      else if((!is.na(regions[i,7])) && (is.na(regions[i,c(2:6)]))){
+        type[i,] <- rbind("threeUtr")
+      }
+      else if ((!is.na(regions[i,c(2,4:5)])) && (is.na(regions[i,c(3,6:7)]))){
+        type[i,]  <- rbind("partialFirstExon")
+      }
+      else if ((!is.na(regions[i,c(3,4:5)]) && is.na(regions[i,c(4,6:7)]))){
+        type[i,]  <- rbind("partialLastExon")
+      }
+      else if((!is.na(regions[i,5])) && (is.na(regions[i,c(2,3,4,6,7)]))){
+        type[i,] <- rbind("intragenic")
+      }
+      else if((!is.na(regions[i,c(2,4,5,6)])) && (is.na(regions[i,c(3,7)]))){
+        type[i,] <- rbind("partialFirstexon+fiveUTR")
+      }
+      else if((!is.na(regions[i,c(2,4,5,7)])) && (is.na(regions[i,c(3,6)]))){
+        type[i,] <- rbind("partialFirstexon+threeUTR")
+      }
+      else if((!is.na(regions[i,c(3,4,5,6)])) && (is.na(regions[i,c(2,7)]))){
+        type[i,] <- rbind("partialLastexon+fiveUTR")
+      }
+      else if((!is.na(regions[i,c(3,4,5,6)])) && (is.na(regions[i,c(2,7)]))){
+        type[i,] <- rbind("partialLastexon+threeUTR")
+      }
+      else if((!is.na(regions[i,c(2:6)])) && (is.na(regions[i,7]))){
+        type[i,] <- rbind("allExons+fiveUTR")
+      }
+      else if((!is.na(regions[i,c(2:5,7)])) && (is.na(regions[i,6]))){
+        type[i,] <- rbind("allExons+threeUTR")
+      }
+      else{
+        type[i,] <- rbind(cbind("NoOverlaps"))
+      }
+    }}
+  
+  queryGR$type <- as.vector(unlist(type))
   return(queryGR)
 }
 
-datGr <- AnnotVariants(queryGR = datGr,RefGR = firstExonGR,pos = "FirstExon")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = lastExonGR,pos = "LastExon")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = threeutrGR,pos = "threeUTR")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = fiveutrGR,pos = "fiveUTR")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = intragenicGR,pos = "intragenic")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = partialFexGR,pos = "partial_with_firstExon")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = partialLexGR,pos = "partial_with_lastExon")
-datGr <- AnnotVariants(queryGR = datGr,RefGR = intronGr,pos = "intron")
+
+
 
 
 
