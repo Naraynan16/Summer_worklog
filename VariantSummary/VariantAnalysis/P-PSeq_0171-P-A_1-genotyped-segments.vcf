@@ -1,0 +1,196 @@
+##fileformat=VCFv4.2
+##FORMAT=<ID=CN,Number=1,Type=Integer,Description="Segment most-likely copy-number call">
+##FORMAT=<ID=GT,Number=1,Type=Integer,Description="Segment genotype">
+##FORMAT=<ID=NP,Number=1,Type=Integer,Description="Number of points (i.e. targets or bins) in the segment">
+##FORMAT=<ID=QA,Number=1,Type=Integer,Description="Complementary Phred-scaled probability that all points (i.e. targets or bins) in the segment agree with the segment copy-number call">
+##FORMAT=<ID=QS,Number=1,Type=Integer,Description="Complementary Phred-scaled probability that at least one point (i.e. target or bin) in the segment agrees with the segment copy-number call">
+##FORMAT=<ID=QSE,Number=1,Type=Integer,Description="Complementary Phred-scaled probability that the segment end position is a genuine copy-number changepoint">
+##FORMAT=<ID=QSS,Number=1,Type=Integer,Description="Complementary Phred-scaled probability that the segment start position is a genuine copy-number changepoint">
+##GATKCommandLine=<ID=PostprocessGermlineCNVCalls,CommandLine="PostprocessGermlineCNVCalls --calls-shard-path PediseqCNVcaller/Pediseq_1_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_2_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_3_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_4_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_5_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_6_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_7_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_8_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_9_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_10_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_11_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_12_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_13_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_14_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_15_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_16_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_17_of_18-calls --calls-shard-path PediseqCNVcaller/Pediseq_18_of_18-calls --model-shard-path PediseqCNVcaller/Pediseq_1_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_2_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_3_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_4_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_5_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_6_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_7_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_8_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_9_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_10_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_11_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_12_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_13_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_14_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_15_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_16_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_17_of_18-model --model-shard-path PediseqCNVcaller/Pediseq_18_of_18-model --contig-ploidy-calls ploidy-calls --sample-index 90 --allosomal-contig X --allosomal-contig Y --output-genotyped-intervals finalCalls/P-PSeq_0171-P-A_1-genotyped-intervals.vcf.gz --output-genotyped-segments finalCalls/P-PSeq_0171-P-A_1-genotyped-segments.vcf.gz --output-denoised-copy-ratios finalCalls/P-PSeq_0171-P-A_1-denoised-copy-ratios.tsv --sequence-dictionary Homo_sapiens_assembly19.dict --autosomal-ref-copy-number 2 --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false",Version="4.1.8.1",Date="August 30, 2020 2:20:16 PM EDT">
+##INFO=<ID=END,Number=1,Type=Integer,Description="End coordinate of the variant">
+##contig=<ID=1,length=249250621,assembly=human_g1k_v37.nix>
+##contig=<ID=2,length=243199373,assembly=human_g1k_v37.nix>
+##contig=<ID=3,length=198022430,assembly=human_g1k_v37.nix>
+##contig=<ID=4,length=191154276,assembly=human_g1k_v37.nix>
+##contig=<ID=5,length=180915260,assembly=human_g1k_v37.nix>
+##contig=<ID=6,length=171115067,assembly=human_g1k_v37.nix>
+##contig=<ID=7,length=159138663,assembly=human_g1k_v37.nix>
+##contig=<ID=8,length=146364022,assembly=human_g1k_v37.nix>
+##contig=<ID=9,length=141213431,assembly=human_g1k_v37.nix>
+##contig=<ID=10,length=135534747,assembly=human_g1k_v37.nix>
+##contig=<ID=11,length=135006516,assembly=human_g1k_v37.nix>
+##contig=<ID=12,length=133851895,assembly=human_g1k_v37.nix>
+##contig=<ID=13,length=115169878,assembly=human_g1k_v37.nix>
+##contig=<ID=14,length=107349540,assembly=human_g1k_v37.nix>
+##contig=<ID=15,length=102531392,assembly=human_g1k_v37.nix>
+##contig=<ID=16,length=90354753,assembly=human_g1k_v37.nix>
+##contig=<ID=17,length=81195210,assembly=human_g1k_v37.nix>
+##contig=<ID=18,length=78077248,assembly=human_g1k_v37.nix>
+##contig=<ID=19,length=59128983,assembly=human_g1k_v37.nix>
+##contig=<ID=20,length=63025520,assembly=human_g1k_v37.nix>
+##contig=<ID=21,length=48129895,assembly=human_g1k_v37.nix>
+##contig=<ID=22,length=51304566,assembly=human_g1k_v37.nix>
+##contig=<ID=X,length=155270560,assembly=human_g1k_v37.nix>
+##contig=<ID=Y,length=59373566,assembly=human_g1k_v37.nix>
+##contig=<ID=MT,length=16569,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000207.1,length=4262,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000226.1,length=15008,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000229.1,length=19913,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000231.1,length=27386,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000210.1,length=27682,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000239.1,length=33824,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000235.1,length=34474,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000201.1,length=36148,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000247.1,length=36422,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000245.1,length=36651,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000197.1,length=37175,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000203.1,length=37498,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000246.1,length=38154,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000249.1,length=38502,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000196.1,length=38914,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000248.1,length=39786,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000244.1,length=39929,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000238.1,length=39939,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000202.1,length=40103,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000234.1,length=40531,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000232.1,length=40652,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000206.1,length=41001,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000240.1,length=41933,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000236.1,length=41934,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000241.1,length=42152,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000243.1,length=43341,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000242.1,length=43523,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000230.1,length=43691,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000237.1,length=45867,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000233.1,length=45941,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000204.1,length=81310,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000198.1,length=90085,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000208.1,length=92689,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000191.1,length=106433,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000227.1,length=128374,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000228.1,length=129120,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000214.1,length=137718,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000221.1,length=155397,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000209.1,length=159169,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000218.1,length=161147,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000220.1,length=161802,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000213.1,length=164239,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000211.1,length=166566,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000199.1,length=169874,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000217.1,length=172149,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000216.1,length=172294,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000215.1,length=172545,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000205.1,length=174588,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000219.1,length=179198,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000224.1,length=179693,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000223.1,length=180455,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000195.1,length=182896,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000212.1,length=186858,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000222.1,length=186861,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000200.1,length=187035,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000193.1,length=189789,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000194.1,length=191469,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000225.1,length=211173,assembly=human_g1k_v37.nix>
+##contig=<ID=GL000192.1,length=547496,assembly=human_g1k_v37.nix>
+##source=PostprocessGermlineCNVCalls
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	P-PSeq_0171-P-A_1
+1	761998	CNV_1_761998_1567785	N	.	3076.53	.	END=1567785	GT:CN:NP:QA:QS:QSE:QSS	0:2:246:48:3077:40:91
+1	1569577	CNV_1_1569577_1569972	N	<DEL>	33.10	.	END=1569972	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:33:33:33:33
+1	1571584	CNV_1_1571584_17023508	N	.	3076.53	.	END=17023508	GT:CN:NP:QA:QS:QSE:QSS	0:2:1667:10:3077:15:40
+1	17025894	CNV_1_17025894_17046731	N	<DUP>	37.35	.	END=17046731	GT:CN:NP:QA:QS:QSE:QSS	1:3:6:10:37:9:15
+1	17090882	CNV_1_17090882_25627644	N	.	3076.53	.	END=25627644	GT:CN:NP:QA:QS:QSE:QSS	0:2:1091:12:3077:22:9
+1	25627962	CNV_1_25627962_25655702	N	<DEL>	86.81	.	END=25655702	GT:CN:NP:QA:QS:QSE:QSS	1:1:5:12:87:14:22
+1	25666843	CNV_1_25666843_25729436	N	.	1056.93	.	END=25729436	GT:CN:NP:QA:QS:QSE:QSS	0:2:13:81:1057:82:14
+1	25735134	CNV_1_25735134_25735511	N	<DUP>	9.25	.	END=25735511	GT:CN:NP:QA:QS:QSE:QSS	1:4:1:9:9:9:9
+1	25737625	CNV_1_25737625_110214241	N	.	3076.53	.	END=110214241	GT:CN:NP:QA:QS:QSE:QSS	0:2:6061:16:3077:197:45
+1	110230241	CNV_1_110230241_110233234	N	<DEL>	606.45	.	END=110233234	GT:CN:NP:QA:QS:QSE:QSS	1:0:3:159:606:168:345
+1	110254755	CNV_1_110254755_161519875	N	.	3076.53	.	END=161519875	GT:CN:NP:QA:QS:QSE:QSS	0:2:3265:22:3077:34:103
+1	161559166	CNV_1_161559166_161559485	N	<DEL>	34.34	.	END=161559485	GT:CN:NP:QA:QS:QSE:QSS	1:1:1:34:34:34:34
+1	161565287	CNV_1_161565287_196748651	N	.	3076.53	.	END=196748651	GT:CN:NP:QA:QS:QSE:QSS	0:2:2037:35:3077:40:33
+1	196748875	CNV_1_196748875_196801329	N	<DEL>	623.70	.	END=196801329	GT:CN:NP:QA:QS:QSE:QSS	1:1:8:9:624:31:40
+1	196857231	CNV_1_196857231_249212759	N	.	3076.53	.	END=249212759	GT:CN:NP:QA:QS:QSE:QSS	0:2:3922:39:3077:98:31
+2	41360	CNV_2_41360_38925646	N	.	3076.53	.	END=38925646	GT:CN:NP:QA:QS:QSE:QSS	0:2:2412:40:3077:109:78
+2	38956638	CNV_2_38956638_38972521	N	<DUP>	171.51	.	END=38972521	GT:CN:NP:QA:QS:QSE:QSS	1:3:5:85:172:48:107
+2	38973119	CNV_2_38973119_73836947	N	.	3076.53	.	END=73836947	GT:CN:NP:QA:QS:QSE:QSS	0:2:1944:42:3077:61:48
+2	73851624	CNV_2_73851624_73851943	N	<DUP>	7.84	.	END=73851943	GT:CN:NP:QA:QS:QSE:QSS	1:4:1:8:8:8:8
+2	73867923	CNV_2_73867923_130949514	N	.	3076.53	.	END=130949514	GT:CN:NP:QA:QS:QSE:QSS	0:2:2561:41:3077:97:61
+2	130955821	CNV_2_130955821_130956196	N	<DUP>	12.66	.	END=130956196	GT:CN:NP:QA:QS:QSE:QSS	1:4:1:13:13:13:13
+2	131096439	CNV_2_131096439_242946805	N	.	3076.53	.	END=242946805	GT:CN:NP:QA:QS:QSE:QSS	0:2:7213:36:3077:62:151
+3	239250	CNV_3_239250_75781408	N	.	3076.53	.	END=75781408	GT:CN:NP:QA:QS:QSE:QSS	0:2:5206:6:3077:6:93
+3	75785784	CNV_3_75785784_75790868	N	<DUP>	11.91	.	END=75790868	GT:CN:NP:QA:QS:QSE:QSS	1:5:4:8:12:10:6
+3	75986648	CNV_3_75986648_197765771	N	.	3076.53	.	END=197765771	GT:CN:NP:QA:QS:QSE:QSS	0:2:6120:31:3077:151:32
+4	53139	CNV_4_53139_190904036	N	.	3076.53	.	END=190904036	GT:CN:NP:QA:QS:QSE:QSS	0:2:7857:29:3077:90:79
+5	140291	CNV_5_140291_42566221	N	.	3076.53	.	END=42566221	GT:CN:NP:QA:QS:QSE:QSS	0:2:1661:39:3077:90:123
+5	42628943	CNV_5_42628943_42629345	N	<DEL>	111.04	.	END=42629345	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:111:111:111:111
+5	42646244	CNV_5_42646244_70308816	N	.	3076.53	.	END=70308816	GT:CN:NP:QA:QS:QSE:QSS	0:2:1000:43:3077:284:97
+5	70369822	CNV_5_70369822_70388991	N	<DEL>	384.53	.	END=70388991	GT:CN:NP:QA:QS:QSE:QSS	1:0:2:191:385:198:199
+5	70751552	CNV_5_70751552_180687954	N	.	3076.53	.	END=180687954	GT:CN:NP:QA:QS:QSE:QSS	0:2:5996:4:3077:204:159
+6	203300	CNV_6_203300_32428036	N	.	3076.53	.	END=32428036	GT:CN:NP:QA:QS:QSE:QSS	0:2:2093:20:3077:111:120
+6	32485249	CNV_6_32485249_32498226	N	<DUP>	69.89	.	END=32498226	GT:CN:NP:QA:QS:QSE:QSS	1:5:5:23:70:32:36
+6	32546523	CNV_6_32546523_32609504	N	.	110.21	.	END=32609504	GT:CN:NP:QA:QS:QSE:QSS	0:2:8:29:110:21:48
+6	32609636	CNV_6_32609636_32634596	N	<DUP>	51.09	.	END=32634596	GT:CN:NP:QA:QS:QSE:QSS	1:3:8:17:51:31:19
+6	32708946	CNV_6_32708946_170893755	N	.	3076.53	.	END=170893755	GT:CN:NP:QA:QS:QSE:QSS	0:2:7342:24:3077:86:32
+7	192998	CNV_7_192998_100320928	N	.	3076.53	.	END=100320928	GT:CN:NP:QA:QS:QSE:QSS	0:2:5091:35:3077:123:93
+7	100331543	CNV_7_100331543_100336290	N	<DEL>	581.74	.	END=100336290	GT:CN:NP:QA:QS:QSE:QSS	1:0:5:119:582:163:123
+7	100344049	CNV_7_100344049_141764527	N	.	3076.53	.	END=141764527	GT:CN:NP:QA:QS:QSE:QSS	0:2:2638:37:3077:8:132
+7	141765098	CNV_7_141765098_141786197	N	<DEL>	2013.30	.	END=141786197	GT:CN:NP:QA:QS:QSE:QSS	1:1:14:8:2013:79:8
+7	141786352	CNV_7_141786352_141786751	N	<DEL>	78.69	.	END=141786751	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:79:79:79:79
+7	141791732	CNV_7_141791732_141792051	N	.	28.37	.	END=141792051	GT:CN:NP:QA:QS:QSE:QSS	0:2:1:28:28:28:28
+7	141792240	CNV_7_141792240_141793555	N	<DEL>	152.74	.	END=141793555	GT:CN:NP:QA:QS:QSE:QSS	1:1:2:86:153:86:28
+7	141794129	CNV_7_141794129_143176032	N	.	3076.53	.	END=143176032	GT:CN:NP:QA:QS:QSE:QSS	0:2:231:47:3077:71:86
+7	143306389	CNV_7_143306389_143306712	N	<DEL>	51.90	.	END=143306712	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:52:52:52:52
+7	143549413	CNV_7_143549413_158937687	N	.	3076.53	.	END=158937687	GT:CN:NP:QA:QS:QSE:QSS	0:2:924:45:3077:154:73
+8	182909	CNV_8_182909_39142557	N	.	3076.53	.	END=39142557	GT:CN:NP:QA:QS:QSE:QSS	0:2:2085:29:3077:111:145
+8	39311395	CNV_8_39311395_39335372	N	<DEL>	616.71	.	END=39335372	GT:CN:NP:QA:QS:QSE:QSS	1:1:9:91:617:132:111
+8	39441987	CNV_8_39441987_146279699	N	.	3076.53	.	END=146279699	GT:CN:NP:QA:QS:QSE:QSS	0:2:4550:32:3077:141:81
+9	214308	CNV_9_214308_136412402	N	.	3076.53	.	END=136412402	GT:CN:NP:QA:QS:QSE:QSS	0:2:6505:29:3077:5:190
+9	136419307	CNV_9_136419307_136419866	N	<DUP>	3.63	.	END=136419866	GT:CN:NP:QA:QS:QSE:QSS	1:3:1:4:4:4:4
+9	136439732	CNV_9_136439732_141016632	N	.	3076.53	.	END=141016632	GT:CN:NP:QA:QS:QSE:QSS	0:2:880:10:3077:153:4
+10	225804	CNV_10_225804_17757010	N	.	3076.53	.	END=17757010	GT:CN:NP:QA:QS:QSE:QSS	0:2:981:31:3077:8:115
+10	17875628	CNV_10_17875628_17876012	N	<DUP>	2.59	.	END=17876012	GT:CN:NP:QA:QS:QSE:QSS	1:3:1:3:3:3:3
+10	17891431	CNV_10_17891431_135382024	N	.	3076.53	.	END=135382024	GT:CN:NP:QA:QS:QSE:QSS	0:2:6735:13:3077:152:8
+11	192966	CNV_11_192966_4968216	N	.	3076.53	.	END=4968216	GT:CN:NP:QA:QS:QSE:QSS	0:2:828:24:3077:15:91
+11	4975876	CNV_11_4975876_4976263	N	<DEL>	63.81	.	END=4976263	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:64:64:64:64
+11	4976442	CNV_11_4976442_4977087	N	<DEL>	32.55	.	END=4977087	GT:CN:NP:QA:QS:QSE:QSS	1:1:1:33:33:33:33
+11	5009252	CNV_11_5009252_6048603	N	.	3076.53	.	END=6048603	GT:CN:NP:QA:QS:QSE:QSS	0:2:115:59:3077:80:33
+11	6048693	CNV_11_6048693_6049089	N	<DEL>	80.23	.	END=6049089	GT:CN:NP:QA:QS:QSE:QSS	1:1:1:80:80:80:80
+11	6079472	CNV_11_6079472_55371776	N	.	3076.53	.	END=55371776	GT:CN:NP:QA:QS:QSE:QSS	0:2:2687:9:3077:35:80
+11	55371777	CNV_11_55371777_55419480	N	<DEL>	1032.34	.	END=55419480	GT:CN:NP:QA:QS:QSE:QSS	1:1:5:76:1032:78:35
+11	55432503	CNV_11_55432503_116969209	N	.	3076.53	.	END=116969209	GT:CN:NP:QA:QS:QSE:QSS	0:2:5062:27:3077:69:78
+11	117006277	CNV_11_117006277_117006596	N	<DEL>	86.81	.	END=117006596	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:87:87:87:87
+11	117014806	CNV_11_117014806_134257921	N	.	3076.53	.	END=134257921	GT:CN:NP:QA:QS:QSE:QSS	0:2:1505:39:3077:195:62
+12	208221	CNV_12_208221_133502802	N	.	3076.53	.	END=133502802	GT:CN:NP:QA:QS:QSE:QSS	0:2:10153:13:3077:119:101
+12	133509211	CNV_12_133509211_133509953	N	<DEL>	124.58	.	END=133509953	GT:CN:NP:QA:QS:QSE:QSS	1:0:1:125:125:125:125
+12	133681915	CNV_12_133681915_133811126	N	.	1787.78	.	END=133811126	GT:CN:NP:QA:QS:QSE:QSS	0:2:25:68:1788:87:157
+13	19600954	CNV_13_19600954_115091904	N	.	3076.53	.	END=115091904	GT:CN:NP:QA:QS:QSE:QSS	0:2:3544:35:3077:165:50
+14	20201492	CNV_14_20201492_20202611	N	.	62.74	.	END=20202611	GT:CN:NP:QA:QS:QSE:QSS	0:2:2:19:63:19:63
+14	20215383	CNV_14_20215383_20249483	N	<DUP>	241.33	.	END=20249483	GT:CN:NP:QA:QS:QSE:QSS	1:3:7:28:241:20:19
+14	20296370	CNV_14_20296370_20389827	N	.	33.33	.	END=20389827	GT:CN:NP:QA:QS:QSE:QSS	0:2:5:6:33:7:20
+14	20403706	CNV_14_20403706_20404896	N	<DUP>	56.25	.	END=20404896	GT:CN:NP:QA:QS:QSE:QSS	1:3:2:23:56:35:7
+14	20444020	CNV_14_20444020_107283280	N	.	3076.53	.	END=107283280	GT:CN:NP:QA:QS:QSE:QSS	0:2:5877:12:3077:101:43
+15	20450188	CNV_15_20450188_102389847	N	.	3076.53	.	END=102389847	GT:CN:NP:QA:QS:QSE:QSS	0:2:6332:18:3077:229:71
+16	97178	CNV_16_97178_90142408	N	.	3076.53	.	END=90142408	GT:CN:NP:QA:QS:QSE:QSS	0:2:6867:19:3077:157:162
+17	5907	CNV_17_5907_18678724	N	.	3076.53	.	END=18678724	GT:CN:NP:QA:QS:QSE:QSS	0:2:2571:41:3077:4:48
+17	18682480	CNV_17_18682480_18682832	N	<DUP>	4.14	.	END=18682832	GT:CN:NP:QA:QS:QSE:QSS	1:3:1:4:4:4:4
+17	18694209	CNV_17_18694209_39197816	N	.	3076.53	.	END=39197816	GT:CN:NP:QA:QS:QSE:QSS	0:2:2076:7:3077:8:3
+17	39215694	CNV_17_39215694_39221834	N	<DEL>	8.04	.	END=39221834	GT:CN:NP:QA:QS:QSE:QSS	1:1:2:7:8:7:8
+17	39240835	CNV_17_39240835_61920201	N	.	3076.53	.	END=61920201	GT:CN:NP:QA:QS:QSE:QSS	0:2:2691:27:3077:6:7
+17	61949310	CNV_17_61949310_61958923	N	<DEL>	349.57	.	END=61958923	GT:CN:NP:QA:QS:QSE:QSS	1:1:2:6:350:74:6
+17	61985998	CNV_17_61985998_81083788	N	.	3076.53	.	END=81083788	GT:CN:NP:QA:QS:QSE:QSS	0:2:2461:33:3077:81:73
+18	158313	CNV_18_158313_78005467	N	.	3076.53	.	END=78005467	GT:CN:NP:QA:QS:QSE:QSS	0:2:3075:36:3077:41:106
+19	281308	CNV_19_281308_21606528	N	.	3076.53	.	END=21606528	GT:CN:NP:QA:QS:QSE:QSS	0:2:4389:36:3077:53:100
+19	21607584	CNV_19_21607584_21607968	N	<DUP>	10	.	END=21607968	GT:CN:NP:QA:QS:QSE:QSS	1:3:1:10:10:10:10
+19	21688500	CNV_19_21688500_55179660	N	.	3076.53	.	END=55179660	GT:CN:NP:QA:QS:QSE:QSS	0:2:4368:3:3077:18:54
+19	55236606	CNV_19_55236606_55250257	N	<DUP>	11.01	.	END=55250257	GT:CN:NP:QA:QS:QSE:QSS	1:3:5:2:11:19:2
+19	55294822	CNV_19_55294822_55320572	N	.	31.97	.	END=55320572	GT:CN:NP:QA:QS:QSE:QSS	0:2:7:1:32:3:27
+19	55324449	CNV_19_55324449_55330106	N	<DUP>	25.05	.	END=55330106	GT:CN:NP:QA:QS:QSE:QSS	1:4:5:10:25:13:3
+19	55340593	CNV_19_55340593_59084082	N	.	3076.53	.	END=59084082	GT:CN:NP:QA:QS:QSE:QSS	0:2:717:49:3077:111:17
+20	68159	CNV_20_68159_62905194	N	.	3076.53	.	END=62905194	GT:CN:NP:QA:QS:QSE:QSS	0:2:4651:14:3077:207:103
+21	9825797	CNV_21_9825797_48084508	N	.	3076.53	.	END=48084508	GT:CN:NP:QA:QS:QSE:QSS	0:2:2040:37:3077:120:51
+22	17058655	CNV_22_17058655_51219186	N	.	3076.53	.	END=51219186	GT:CN:NP:QA:QS:QSE:QSS	0:2:3911:11:3077:94:70
+X	2699959	CNV_X_2699959_154563952	N	.	3076.53	.	END=154563952	GT:CN:NP:QA:QS:QSE:QSS	0:1:6159:18:3077:142:202
+X	154577710	CNV_X_154577710_154579042	N	<DEL>	227.69	.	END=154579042	GT:CN:NP:QA:QS:QSE:QSS	1:0:2:86:228:86:175
+X	154721179	CNV_X_154721179_154774977	N	.	589.95	.	END=154774977	GT:CN:NP:QA:QS:QSE:QSS	0:1:7:19:590:126:53
+Y	2654834	CNV_Y_2654834_20826630	N	.	3076.53	.	END=20826630	GT:CN:NP:QA:QS:QSE:QSS	0:1:156:28:3077:86:406
+Y	21154306	CNV_Y_21154306_21154785	N	<DUP>	5.57	.	END=21154785	GT:CN:NP:QA:QS:QSE:QSS	1:3:1:6:6:6:6
+Y	21463414	CNV_Y_21463414_28483641	N	.	3076.53	.	END=28483641	GT:CN:NP:QA:QS:QSE:QSS	0:1:52:73:3077:120:91
